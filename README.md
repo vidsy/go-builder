@@ -1,6 +1,10 @@
 <h1 align="center">go-builder</h1>
 
 <p align="center">
+  <img src="https://circleci.com/gh/vidsy/go-builder/tree/master.svg?style=svg">
+</p>
+
+<p align="center">
   <b>Docker</b> container used to compile <b>Go</b> app.
 </p>
 
