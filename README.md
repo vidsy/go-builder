@@ -1,7 +1,7 @@
 <h1 align="center">go-builder</h1>
 
 <p align="center">
-  **Docker** container used to compile **Go** app.
+  <b>Docker</b> container used to compile <b>Go</b> app.
 </p>
 
 ### Versioning
