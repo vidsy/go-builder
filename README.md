@@ -2,6 +2,7 @@
 
 <p align="center">
   <img src="https://circleci.com/gh/vidsy/go-builder/tree/master.svg?style=svg">
+  <img src="https://img.shields.io/docker/pulls/vidsyhq/go-builder.svg?maxAge=3600&style=flat-square">
 </p>
 
 <p align="center">
