@@ -1,8 +1,8 @@
 <h1 align="center">go-builder</h1>
 
 <p align="center">
-  <img src="https://circleci.com/gh/vidsy/go-builder/tree/master.svg?style=svg">
-  <img src="https://img.shields.io/docker/pulls/vidsyhq/go-builder.svg?maxAge=3600&style=flat-square">
+  <img src="https://circleci.com/gh/vidsy/go-builder/tree/master.svg?style=shield">
+  <img src="https://img.shields.io/docker/pulls/vidsyhq/go-builder.svg?maxAge=3600&style=flat">
 </p>
 
 <p align="center">
