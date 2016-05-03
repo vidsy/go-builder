@@ -26,6 +26,24 @@ Replace with correct `$GOPATH`. This will output a binary suitable to use with *
 
 ### CircleCI
 
-```
-TODO: write example circle.yml
+```yaml
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker run -v "$PWD":/go/src/github.com/org/repo -w /go/src/github.com/org/repo vidsyhq/go-builder
+    - docker build -t org/repo .
+
+test:
+  override:
+    - echo "No tests yet."
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push org/repo
 ```
