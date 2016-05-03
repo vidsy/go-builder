@@ -47,3 +47,7 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push org/repo
 ```
+
+### Notes
+
+[MIT License (MIT)](https://opensource.org/licenses/MIT)
