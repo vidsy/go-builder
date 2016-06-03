@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <b>Docker</b> container used to compile <b>Go</b> app.
+  <b>Docker</b> container used to compile <b>Go</b> applications.
 </p>
 
 ### Versioning
