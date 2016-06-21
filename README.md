@@ -1,8 +1,11 @@
 <h1 align="center">go-builder</h1>
 
 <p align="center">
-  <img src="https://circleci.com/gh/vidsy/go-builder/tree/master.svg?style=shield">
-  <img src="https://img.shields.io/docker/pulls/vidsyhq/go-builder.svg?maxAge=3600&style=flat">
+  <a href="https://circleci.com/gh/vidsy/go-builder" target="_blank">
+    <img src="https://img.shields.io/circleci/project/vidsy/go-builder.svg?maxAge=2592000">
+  </a>
+  <img src="https://img.shields.io/docker/stars/vidsyhq/go-builder.svg?maxAge=2592000">
+  <img src="https://img.shields.io/docker/pulls/vidsyhq/go-builder.svg?maxAge=2592000">
 </p>
 
 <p align="center">
@@ -18,7 +21,7 @@ The following apps are versioned in the **Dockerfile**:
 
 ### Usage
 
-```
+```bash
 docker run --rm -v "$PWD":/go/src/github.com/org/repo -w /go/src/github.com/org/repo vidsyhq/go-builder
 ```
 
@@ -48,6 +51,6 @@ deployment:
       - docker push org/repo
 ```
 
-### Notes
+## Vidsy
 
-[MIT License (MIT)](https://opensource.org/licenses/MIT)
+The engineering team @ [Vidsy.co](http://brands.vidsy.co) write **Go & Ruby microservices**, all deployed to AWS in Docker containers. **Interested?** Ping [@revett](https://github.com/revett)!
