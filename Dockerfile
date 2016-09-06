@@ -11,7 +11,7 @@ RUN apk add ca-certificates wget
 RUN update-ca-certificates
 
 RUN wget -O glide.zip "$GLIDE_DOWNLOAD_URL"
-RUN unzip glide.zip  linux-amd64/glide
+RUN unzip glide.zip linux-amd64/glide
 RUN mv linux-amd64/glide /usr/local/bin
 RUN rm -rf linux-amd64 glide.zip
 
