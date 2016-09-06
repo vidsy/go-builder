@@ -7,7 +7,7 @@ ENV GLIDE_DOWNLOAD_URL https://github.com/Masterminds/glide/releases/download/$G
 ADD ./build.sh /scripts/build.sh
 
 RUN apk update \
-  && apk add ca-certificates wget \
+  && apk add git ca-certificates wget \
   && update-ca-certificates
 
 RUN wget -O glide.zip "$GLIDE_DOWNLOAD_URL"
