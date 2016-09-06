@@ -1,4 +1,4 @@
-FROM golang:1.6.2
+FROM golang:1.7.0-alpine
 MAINTAINER charlie@vidsy.co
 
 ENV GLIDE_VERSION 0.10.2
