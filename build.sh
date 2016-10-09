@@ -7,7 +7,7 @@ USER=$(whoami)
 SSH_KEY_NAME="id_circleci_github"
 
 log () {
-	echo "[go-builder] => $1" 
+  echo "[go-builder] => $1" 
 } 
 
 if [ "$SETUP_SSH" == "true" ]; then
