@@ -25,6 +25,7 @@ if [ "$INSTALL" == "true" ]; then
 fi
 
 if [ "$BUILD" == "true" ]; then
+  env
   log "Building binary"
-  CGO_ENABLED=0 go build -a -installsuffix nocgo .
+  go build -a -installsuffix nocgo .
 fi
