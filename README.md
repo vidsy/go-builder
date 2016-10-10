@@ -27,6 +27,14 @@ docker run --rm -v "$PWD":/go/src/github.com/org/repo -w /go/src/github.com/org/
 
 Replace with correct `$GOPATH`. This will output a binary suitable to use with **Alpine** Linux.
 
+#### Options
+
+Each of the following steps can be controlled with env vars:
+
+* `INSTALL=true` (Installs dependencies using glide).
+* `BUILD=true` (Builds the linux 64bit binary).
+* `SETUP_SSH=false` (Sets up the ssh config for use in circle CI for private repos).
+
 ### CircleCI
 
 ```yaml
