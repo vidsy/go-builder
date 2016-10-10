@@ -1,8 +1,8 @@
 #!/bin/sh
 
-INSTALL="${1:-true}"
-BUILD="${2:-true}"
-SETUP_SSH="${3:-false}"
+INSTALL="${INSTALL:-true}"
+BUILD="${BUILD:-true}"
+SETUP_SSH="${SETUP_SSH:-false}"
 USER=$(whoami)
 SSH_KEY_NAME="id_circleci_github"
 
