@@ -25,7 +25,6 @@ if [ "$INSTALL" == "true" ]; then
 fi
 
 if [ "$BUILD" == "true" ]; then
-  env
   log "Building binary"
   go build -a -installsuffix nocgo .
 fi
