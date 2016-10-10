@@ -31,9 +31,9 @@ Replace with correct `$GOPATH`. This will output a binary suitable to use with *
 
 Each of the following steps can be controlled with env vars:
 
-* INSTALL=true (Installs dependencies using glide).
-* BUILD=true (Builds the linux 64bit binary).
-* SETUP_SSH=false (Sets up the ssh config for use in circle CI for private repos).
+* `INSTALL=true` (Installs dependencies using glide).
+* `BUILD=true` (Builds the linux 64bit binary).
+* `SETUP_SSH=false` (Sets up the ssh config for use in circle CI for private repos).
 
 ### CircleCI
 
