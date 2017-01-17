@@ -1,20 +1,26 @@
+general:
+  branches:
+    ignore:
+      - master
+
 machine:
   services:
     - docker
 
 dependencies:
   override:
-    - docker build -t vidsyhq/go-builder .
+    - make build-image
 
 test:
   override:
-    - echo "No tests :("
+    - make test
 
 deployment:
+  feature-branch:
+    branch: /^((?!master).)*$/
+    commands:
+      - make check-version
   hub:
     tag: /[0-9]+\.[0-9]+\.[0-9]+/
     commands:
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker tag vidsyhq/go-builder:latest vidsyhq/go-builder:$CIRCLE_TAG
-      - docker push vidsyhq/go-builder:$CIRCLE_TAG
-      - docker push vidsyhq/go-builder
+      - make push-to-registry -e DOCKER_EMAIL=$DOCKER_EMAIL -e DOCKER_USER=$DOCKER_USER -e DOCKER_PASS=$DOCKER_PASS -e CIRCLE_TAG=$CIRCLE_TAG
