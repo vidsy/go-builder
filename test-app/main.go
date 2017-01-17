@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 )
 
 var (
@@ -15,4 +16,9 @@ var (
 func main() {
 	log.Printf("Version: %s", Version)
 	log.Printf("BuildTime: %s", BuildTime)
+
+	if BuildTime == "" || Version == "" {
+		log.Printf("Expected Version and BuildTime to be set")
+		os.Exit(1)
+	}
 }

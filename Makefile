@@ -5,6 +5,9 @@ VERSION ?= $(shell cat ./VERSION)
 build-image:
 	@docker build -t vidsyhq/${REPONAME} .
 
+build-local:
+	@docker build -t vidsyhq/${REPONAME}:local .
+
 check-version:
 	@echo "=> Checking if VERSION exists as Git tag..."
 	(! git rev-list ${VERSION})
@@ -22,11 +25,11 @@ push-to-registry:
 	@docker push vidsyhq/${REPONAME}:${CIRCLE_TAG}
 	@docker push vidsyhq/${REPONAME}
 
-build:
+build: build-local
 	@docker run --rm \
 	-v "${CURDIR}":/go/src/github.com/vidsy \
 	-w /go/src/github.com/vidsy/test-app \
-	vidsyhq/go-builder \
+	vidsyhq/go-builder:local \
 	@ls -l
 
 test: build
