@@ -12,8 +12,7 @@ trap _cleanup ERR
 # --
 
 function _cleanup {
-  printf "\n"
-  _error "Issue with a bash script command, stopping early"
+  printf "\nIssue with a bash script command, stopping early\n"
 }
 
 # --
