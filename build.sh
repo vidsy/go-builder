@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# --
+# Stop script if any command fails and run _cleanup() function.
+# --
+
+set -e
+
 INSTALL="${INSTALL:-true}"
 BUILD="${BUILD:-true}"
 SETUP_SSH="${SETUP_SSH:-false}"
