@@ -1,5 +1,25 @@
 #!/bin/sh
 
+# --
+# Stop script if any command fails and run _cleanup() function.
+# --
+
+set -e
+trap _cleanup ERR
+
+# --
+# Utility Functions.
+# --
+
+function _cleanup {
+  printf "\n"
+  _error "Issue with a bash script command, stopping early"
+}
+
+# --
+# Variables.
+# --
+
 INSTALL="${INSTALL:-true}"
 BUILD="${BUILD:-true}"
 SETUP_SSH="${SETUP_SSH:-false}"
