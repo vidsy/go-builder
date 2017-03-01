@@ -5,19 +5,6 @@
 # --
 
 set -e
-trap _cleanup ERR
-
-# --
-# Utility Functions.
-# --
-
-function _cleanup {
-  printf "\nIssue with a bash script command, stopping early\n"
-}
-
-# --
-# Variables.
-# --
 
 INSTALL="${INSTALL:-true}"
 BUILD="${BUILD:-true}"
