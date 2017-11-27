@@ -6,7 +6,7 @@ ENV GLIDE_DOWNLOAD_URL https://github.com/Masterminds/glide/releases/download/v$
 ENV CGO_ENABLED 0
 
 RUN apk update \
-  && apk add openssh-client make git ca-certificates wget \
+  && apk add openssh-client make git ca-certificates tar wget \
   && update-ca-certificates
 
 RUN wget -O glide.zip "$GLIDE_DOWNLOAD_URL"
