@@ -22,11 +22,11 @@ push-to-registry:
 	@docker push vidsyhq/${REPONAME}:${CIRCLE_TAG}
 	@docker push vidsyhq/${REPONAME}
 
-build: build-local
+build: build-image
 	@docker run --rm \
 	-v "${CURDIR}":/go/src/github.com/vidsy \
 	-w /go/src/github.com/vidsy/test-app \
-	vidsyhq/go-builder:local \
+	vidsyhq/go-builder:latest \
 	@ls -l
 
 test: build
