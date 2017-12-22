@@ -1,5 +1,8 @@
 FROM golang:1.7.0-alpine
-MAINTAINER charlie@vidsy.co
+LABEL maintainer="Vidsy <tech@vidsy.co>"
+
+ARG VERSION
+LABEL version=$VERSION
 
 ENV GLIDE_VERSION 0.12.3
 ENV GLIDE_DOWNLOAD_URL https://github.com/Masterminds/glide/releases/download/v$GLIDE_VERSION/glide-v$GLIDE_VERSION-linux-amd64.zip
