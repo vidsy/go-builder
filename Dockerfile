@@ -1,10 +1,10 @@
-FROM golang:1.7.0-alpine
+FROM golang:1.9.1-alpine
 LABEL maintainer="Vidsy <tech@vidsy.co>"
 
 ARG VERSION
 LABEL version=$VERSION
 
-ENV GLIDE_VERSION 0.12.3
+ENV GLIDE_VERSION 0.13.1
 ENV GLIDE_DOWNLOAD_URL https://github.com/Masterminds/glide/releases/download/v$GLIDE_VERSION/glide-v$GLIDE_VERSION-linux-amd64.zip
 ENV CGO_ENABLED 0
 
