@@ -16,8 +16,10 @@
 
 The following apps are versioned in the **Dockerfile**:
 
-- Go
-- Glide
+- Go 1.9.1
+- [Glide](https://github.com/Masterminds/glide)
+- [Deb](https://github.com/golang/dep)
+- [Releaser](https://github.com/goreleaser/goreleaser)
 
 ### Usage
 
