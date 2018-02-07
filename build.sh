@@ -38,8 +38,16 @@ if [ "${SETUP_SSH}" == "true" ]; then
 fi
 
 if [ "${INSTALL}" == "true" ]; then
-  _log "Installing dependencies with glide"
-  glide install
+  if [ -f glide.yaml ]; then
+    _log "Installing dependencies with Glide"
+    glide install
+  elif [ -f Gopkg.toml ]; then
+    _log "Installing dependencies with Dep"
+    dep ensure
+  else
+    _log "Currently go-builder only supports the dependency manangers Glide and Dep"
+    exit -1
+  fi
 fi
 
 if [ "${BUILD}" == "true" ]; then
