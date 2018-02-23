@@ -52,5 +52,5 @@ fi
 
 if [ "${BUILD}" == "true" ]; then
   _log "Building binary"
-  go build -ldflags "$VERSION_FLAGS" -a -installsuffix nocgo .
+  go build -i -ldflags "$VERSION_FLAGS" -a -installsuffix nocgo .
 fi
