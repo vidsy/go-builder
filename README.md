@@ -43,6 +43,7 @@ Each of the following steps can be controlled with env vars:
 | `BUILD_TIME` | The timestamp for when the binary was built | `$(date -u +"%d/%m/%YT%H:%M:%S%z")` |
 | `BUILD_TIME_PACKAGE` | The package for the build time variable | `main` | 
 | `BUILD_TIME_VARIABLE_NAME` | The variable name for the build time | `BuildTime` |
+| `OUTPUT_ZONEINFO` | The variable name for if `/usr/local/go/lib/time/zoneinfo.zip` should be added to the current working direcory | `false` |
 
 ### CircleCI
 

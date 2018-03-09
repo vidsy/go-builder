@@ -17,7 +17,7 @@ VERSION_VARIABLE_NAME="${VERSION_VARIABLE_NAME:-Version}"
 BUILD_TIME="${BUILD_TIME:-$(date -u +"%d/%m/%YT%H:%M:%S%z")}"
 BUILD_TIME_PACKAGE="${BUILD_TIME_PACKAGE:-main}"
 BUILD_TIME_VARIABLE_NAME="${BUILD_TIME_VARIABLE_NAME:-BuildTime}"
-
+OUTPUT_ZONEINFO="${OUTPUT_ZONEINFO:-false}"
 
 _log () {
   echo "[go-builder] => $1"
@@ -53,4 +53,9 @@ fi
 if [ "${BUILD}" == "true" ]; then
   _log "Building binary"
   go build -i -ldflags "$VERSION_FLAGS" -a -installsuffix nocgo .
+fi
+
+if [ "${OUTPUT_ZONEINFO}" == "true" ]; then
+  _log "Copying /usr/local/go/lib/time/zoneinfo.zip to current directory"
+  cp /usr/local/go/lib/time/zoneinfo.zip .
 fi
