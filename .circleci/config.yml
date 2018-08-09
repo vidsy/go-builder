@@ -30,9 +30,6 @@ jobs:
     machine: true
     steps:
       - checkout
-      - setup_remote_docker
-      - run: apk update && apk add make
-      - run: chmod +x ./test-app/test-app
       - run: make test
 
 workflows:
