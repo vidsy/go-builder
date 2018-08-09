@@ -1,0 +1,49 @@
+version: 2
+jobs:
+  build-image:
+    docker:
+      - image: docker:18.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: apk update && apk add make
+      - run:  make build-image
+
+  check-version:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: apk update && apk add make git
+      - run: make check-version
+
+  deploy:
+    docker:
+      - image: docker:18.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: apk update && apk add make
+      - run: make push-to-registry -e DOCKER_EMAIL=$DOCKER_EMAIL -e DOCKER_USER=$DOCKER_USER -e DOCKER_PASS=$DOCKER_PASS -e CIRCLE_TAG=$CIRCLE_TAG
+
+  test:
+    docker:
+      - image: docker:18.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: apk update && apk add make
+      - run: make test
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build-image
+      - check-version
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
+      - test
