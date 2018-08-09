@@ -27,12 +27,12 @@ jobs:
       - run: make push-to-registry -e DOCKER_EMAIL=$DOCKER_EMAIL -e DOCKER_USER=$DOCKER_USER -e DOCKER_PASS=$DOCKER_PASS -e CIRCLE_TAG=$CIRCLE_TAG
 
   test:
-    docker:
-      - image: docker:18.05.0-ce-git
+    machine: true
     steps:
       - checkout
       - setup_remote_docker
       - run: apk update && apk add make
+      - run: chmod +x ./test-app/test-app
       - run: make test
 
 workflows:
