@@ -24,6 +24,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: apk update && apk add make
+      - run: make build-image
       - run: make push-to-registry -e CIRCLE_TAG=$CIRCLE_TAG
 
   test:
