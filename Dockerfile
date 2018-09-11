@@ -1,4 +1,4 @@
-FROM golang:1.9.1-alpine
+FROM golang:1.10.4-alpine
 LABEL maintainer="Vidsy <tech@vidsy.co>"
 
 ARG VERSION
@@ -7,10 +7,10 @@ LABEL version=$VERSION
 ENV GLIDE_VERSION 0.13.1
 ENV GLIDE_DOWNLOAD_URL https://github.com/Masterminds/glide/releases/download/v$GLIDE_VERSION/glide-v$GLIDE_VERSION-linux-amd64.zip
 
-ENV DEP_VERSION 0.4.1
+ENV DEP_VERSION 0.5.0
 ENV DEP_DOWNLOAD_URL https://github.com/golang/dep/releases/download/v$DEP_VERSION/dep-linux-amd64
 
-ENV GO_RELEASER_VERSION 0.46.4
+ENV GO_RELEASER_VERSION 0.85.2
 ENV GO_RELEASER_DOWNLOAD_URL https://github.com/goreleaser/goreleaser/releases/download/v$GO_RELEASER_VERSION/goreleaser_Linux_x86_64.tar.gz
 
 ENV CGO_ENABLED 0
