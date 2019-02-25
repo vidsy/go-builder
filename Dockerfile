@@ -10,7 +10,7 @@ ENV GLIDE_DOWNLOAD_URL https://github.com/Masterminds/glide/releases/download/v$
 ENV DEP_VERSION 0.5.0
 ENV DEP_DOWNLOAD_URL https://github.com/golang/dep/releases/download/v$DEP_VERSION/dep-linux-amd64
 
-ENV GO_RELEASER_VERSION 0.93.2
+ENV GO_RELEASER_VERSION 0.101.0
 ENV GO_RELEASER_DOWNLOAD_URL https://github.com/goreleaser/goreleaser/releases/download/v$GO_RELEASER_VERSION/goreleaser_Linux_x86_64.tar.gz
 
 ENV CGO_ENABLED 0

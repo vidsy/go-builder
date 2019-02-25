@@ -2,7 +2,8 @@ package main
 
 import (
 	"log"
-	"os"
+
+	"github.com/pkg/errors"
 )
 
 var (
@@ -18,7 +19,8 @@ func main() {
 	log.Printf("BuildTime: %s", BuildTime)
 
 	if BuildTime == "" || Version == "" {
-		log.Printf("Expected Version and BuildTime to be set")
-		os.Exit(1)
+		log.Fatal(
+			errors.New("Expected Version and BuildTime to be set"),
+		)
 	}
 }

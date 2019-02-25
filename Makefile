@@ -24,10 +24,13 @@ push-to-registry:
 
 build: build-image
 	@docker run --rm \
-	-v "${CURDIR}":/go/src/github.com/vidsy \
+	-v "${CURDIR}/src/github.com/vidsy":/go/src/github.com/vidsy \
 	-w /go/src/github.com/vidsy/test-app \
 	vidsyhq/go-builder:latest \
 	@ls -l
 
 test: build
-	@docker run -v "${CURDIR}":/app -w /app/test-app alpine ./test-app
+	@docker run --rm=true \
+	-v "${CURDIR}/src/github.com/vidsy/test-app":/test-app \
+	-w /test-app alpine \
+	./test-app
