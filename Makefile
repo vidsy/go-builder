@@ -30,4 +30,7 @@ build: build-image
 	@ls -l
 
 test: build
-	@docker run -v "${CURDIR}":/app -w /app/test-app alpine ./test-app
+	@docker run --rm=true \
+	-v "${CURDIR}/src/github.com/vidsy/test-app":/test-app \
+	-w /test-app alpine \
+	./test-app
