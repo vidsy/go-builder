@@ -14,6 +14,7 @@ SSH_KEY_NAME="id_circleci_github"
 VERSION_FLAGS=""
 VERSION_PACKAGE="${VERSION_PACKAGE:-main}"
 VERSION_VARIABLE_NAME="${VERSION_VARIABLE_NAME:-Version}"
+BUILD_PATH="${BUILD_PATH:-.}"
 BUILD_TIME="${BUILD_TIME:-$(date -u +"%d/%m/%YT%H:%M:%S%z")}"
 BUILD_TIME_PACKAGE="${BUILD_TIME_PACKAGE:-main}"
 BUILD_TIME_VARIABLE_NAME="${BUILD_TIME_VARIABLE_NAME:-BuildTime}"
@@ -52,7 +53,7 @@ fi
 
 if [ "${BUILD}" == "true" ]; then
   _log "Building binary"
-  go build -i -ldflags "$VERSION_FLAGS" -a -installsuffix nocgo .
+  go build -i -ldflags "$VERSION_FLAGS" -a -installsuffix nocgo ${BUILD_PATH}
 fi
 
 if [ "${OUTPUT_ZONEINFO}" == "true" ]; then
