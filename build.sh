@@ -40,6 +40,7 @@ fi
 
 if [ "${INSTALL}" == "true" ]; then
   if [ -f glide.yaml ]; then
+    _log "Warning - Glide is DEPRECATED, please use dep instead"
     _log "Installing dependencies with Glide"
     glide install
   elif [ -f Gopkg.toml ]; then
