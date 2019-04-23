@@ -29,7 +29,6 @@ build: build-image
 	vidsyhq/go-builder:latest \
 	@ls -l
 
-build-modules: build-image
 	@docker run --rm \
 	-v "${CURDIR}/src/github.com/vidsy":/go/src/github.com/vidsy \
 	-w /go/src/github.com/vidsy/test-app-modules \
@@ -42,7 +41,6 @@ test: build
 	-w /test-app alpine \
 	./test-app
 
-test-modules: build-modules
 	@docker run --rm=true \
 	-v "${CURDIR}/src/github.com/vidsy/test-app-modules":/test-app-modules \
 	-w /test-app-modules alpine \
