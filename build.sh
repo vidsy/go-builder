@@ -46,8 +46,11 @@ if [ "${INSTALL}" == "true" ]; then
   elif [ -f Gopkg.toml ]; then
     _log "Installing dependencies with Dep"
     dep ensure
+  elif [ -f go.mod ]; then
+    _log "Installing dependencies using Go Modules"
+    go mod download
   else
-    _log "Currently go-builder only supports the dependency manangers Glide and Dep"
+    _log "Currently go-builder only supports the dependency manangers Glide, Dep and Go Modules"
     exit -1
   fi
 fi
