@@ -1,4 +1,4 @@
-FROM golang:1.11.2-alpine3.8
+FROM golang:1.12.5-alpine3.9
 LABEL maintainer="Vidsy <tech@vidsy.co>"
 
 ARG VERSION
