@@ -7,7 +7,7 @@ LABEL version=$VERSION
 ENV GLIDE_VERSION 0.13.2
 ENV GLIDE_DOWNLOAD_URL https://github.com/Masterminds/glide/releases/download/v$GLIDE_VERSION/glide-v$GLIDE_VERSION-linux-amd64.zip
 
-ENV DEP_VERSION 0.5.1
+ENV DEP_VERSION 0.5.2
 ENV DEP_DOWNLOAD_URL https://github.com/golang/dep/releases/download/v$DEP_VERSION/dep-linux-amd64
 
 ENV GO_RELEASER_VERSION 0.106.0
