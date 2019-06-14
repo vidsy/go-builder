@@ -52,11 +52,15 @@ if [ "${INSTALL}" == "true" ]; then
     GO111MODULE=on go mod download
   else
     _log "Currently go-builder only supports the dependency manangers Glide, Dep and Go Modules"
-    exit -1
+    exit 1
   fi
 fi
 
 if [ "${BUILD}" == "true" ]; then
+  if [ -f go.mod ]; then
+    export GO111MODULE=on
+  fi
+
   _log "Building binary"
   go build -i -ldflags "$VERSION_FLAGS" -a -installsuffix nocgo ${BUILD_PATH}
 fi
