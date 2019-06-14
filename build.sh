@@ -40,15 +40,16 @@ fi
 
 if [ "${INSTALL}" == "true" ]; then
   if [ -f glide.yaml ]; then
-    _log "Warning - Glide is DEPRECATED, please use dep instead"
+    _log "Warning - Glide is DEPRECATED, please use go modules instead"
     _log "Installing dependencies with Glide"
     glide install
   elif [ -f Gopkg.toml ]; then
+    _log "Warning - dep is DEPRECATED, please use go modules instead"
     _log "Installing dependencies with Dep"
     dep ensure
   elif [ -f go.mod ]; then
     _log "Installing dependencies using Go Modules"
-    go mod download
+    GO111MODULE=on go mod download
   else
     _log "Currently go-builder only supports the dependency manangers Glide, Dep and Go Modules"
     exit -1
