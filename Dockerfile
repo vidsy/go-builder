@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.9 as dependencies
 
 ENV GLIDE_VERSION 0.13.2
 ENV GLIDE_DOWNLOAD_URL https://github.com/Masterminds/glide/releases/download/v$GLIDE_VERSION/glide-v$GLIDE_VERSION-linux-amd64.zip
@@ -37,9 +37,9 @@ RUN apk update \
   && apk add --no-cache openssh-client make git ca-certificates tar gcc \
   && update-ca-certificates
 
-COPY --from=0 /usr/local/bin/glide /usr/local/bin/glide
-COPY --from=0 /usr/local/bin/dep /usr/local/bin/dep
-COPY --from=0 /usr/local/bin/goreleaser /usr/local/bin/goreleaser
+COPY --from=dependencies /usr/local/bin/glide /usr/local/bin/glide
+COPY --from=dependencies /usr/local/bin/dep /usr/local/bin/dep
+COPY --from=dependencies /usr/local/bin/goreleaser /usr/local/bin/goreleaser
 
 RUN chmod u+x /usr/local/bin/dep
 RUN chmod u+x /usr/local/bin/goreleaser
