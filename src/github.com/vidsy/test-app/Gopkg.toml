@@ -1,6 +1,0 @@
-[prune]
-  go-tests = true
-
-[[constraint]]
-  name = "github.com/pkg/errors"
-  version = "0.8.1"
