@@ -1,16 +1,10 @@
 #!/bin/sh
 
-# --
-# Stop script if any command fails and run _cleanup() function.
-# --
-
 set -e
 
 INSTALL="${INSTALL:-true}"
 BUILD="${BUILD:-true}"
-SETUP_SSH="${SETUP_SSH:-false}"
 USER=$(whoami)
-SSH_KEY_NAME="id_circleci_github"
 VERSION_FLAGS=""
 VERSION_PACKAGE="${VERSION_PACKAGE:-main}"
 VERSION_VARIABLE_NAME="${VERSION_VARIABLE_NAME:-Version}"
@@ -29,38 +23,17 @@ if [ -f VERSION ]; then
 	VERSION_FLAGS="-X ${VERSION_PACKAGE}.${VERSION_VARIABLE_NAME}=$(cat VERSION) -X ${BUILD_TIME_PACKAGE}.${BUILD_TIME_VARIABLE_NAME}=${BUILD_TIME}"
 fi
 
-if [ "${SETUP_SSH}" == "true" ]; then
-  _log "Setting up SSH config for private repos"
-  mkdir -p /${USER}/.ssh
-  echo -e "Host github.com\nIdentitiesOnly yes\nIdentityFile /${USER}/.ssh/${SSH_KEY_NAME}\nStrictHostKeyChecking no\nUserKnownHostsFile=/dev/null" > /${USER}/.ssh/config
-  chown -R ${USER}:${USER} /${USER}/.ssh
-  chmod 700 /${USER}/.ssh
-  chmod 600 /${USER}/.ssh/*
-fi
-
 if [ "${INSTALL}" == "true" ]; then
-  if [ -f glide.yaml ]; then
-    _log "Warning - Glide is DEPRECATED, please use go modules instead"
-    _log "Installing dependencies with Glide"
-    glide install
-  elif [ -f Gopkg.toml ]; then
-    _log "Warning - dep is DEPRECATED, please use go modules instead"
-    _log "Installing dependencies with Dep"
-    dep ensure
-  elif [ -f go.mod ]; then
+  if [ -f go.mod ]; then
     _log "Installing dependencies using Go Modules"
-    GO111MODULE=on go mod download
+    go mod download
   else
-    _log "Currently go-builder only supports the dependency manangers Glide, Dep and Go Modules"
+    _log "Currently go-builder only supports Go Modules for dependency mangagment"
     exit 1
   fi
 fi
 
 if [ "${BUILD}" == "true" ]; then
-  if [ -f go.mod ]; then
-    export GO111MODULE=on
-  fi
-
   _log "Building binary"
   go build -i -ldflags "$VERSION_FLAGS" -a -installsuffix nocgo ${BUILD_PATH}
 fi

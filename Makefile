@@ -28,22 +28,11 @@ push-to-registry:
 build: build-image-local
 	@docker run --rm \
 	-v "${CURDIR}/src/github.com/vidsy":/go/src/github.com/vidsy \
-	-w /go/src/github.com/vidsy/test-app \
-	vidsyhq/go-builder:local \
-	@ls -l
-
-	@docker run --rm \
-	-v "${CURDIR}/src/github.com/vidsy":/go/src/github.com/vidsy \
 	-w /go/src/github.com/vidsy/test-app-modules \
 	vidsyhq/go-builder:local \
 	@ls -l
 
 test: build
-	@docker run --rm=true \
-	-v "${CURDIR}/src/github.com/vidsy/test-app":/test-app \
-	-w /test-app alpine \
-	./test-app
-
 	@docker run --rm=true \
 	-v "${CURDIR}/src/github.com/vidsy/test-app-modules":/test-app-modules \
 	-w /test-app-modules alpine \
