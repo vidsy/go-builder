@@ -32,8 +32,6 @@ if [ -f VERSION ]; then
 		do
 		LDFLAGS+="${FLAG} "
 	done
-
-	LDFLAGS=${LDFLAGS} | sed 's/ *$//g'
 fi
 
 if [ "${INSTALL}" == "true" ]; then
@@ -45,6 +43,8 @@ if [ "${INSTALL}" == "true" ]; then
     exit 1
   fi
 fi
+
+LDFLAGS=${LDFLAGS} | sed 's/ *$//g'
 
 if [ "${BUILD}" == "true" ]; then
   _log "Building binary"
