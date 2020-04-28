@@ -25,10 +25,10 @@ if [ -f VERSION ]; then
 	# - legacy services where variables are in the services main
 	# - services that use the new x/service package - this will need to be changed when x/service
 	#   is promoted to the main pkg - during that transition we should support both
-	for FLAG in -X ${VERSION_PACKAGE}.${VERSION_VARIABLE_NAME}=$(cat VERSION) \
-				-X ${BUILD_TIME_PACKAGE}.${BUILD_TIME_VARIABLE_NAME}=${BUILD_TIME} \
-				-X github.com/vidsy/back-end/pkg/x/service.version=$(cat VERSION) \
-				-X github.com/vidsy/back-end/pkg/x/service.built=${BUILD_TIME}
+	for FLAG in "-X ${VERSION_PACKAGE}.${VERSION_VARIABLE_NAME}=$(cat VERSION)" \
+				"-X ${BUILD_TIME_PACKAGE}.${BUILD_TIME_VARIABLE_NAME}=${BUILD_TIME}" \
+				"-X github.com/vidsy/back-end/pkg/x/service.version=$(cat VERSION)" \
+				"-X github.com/vidsy/back-end/pkg/x/service.built=${BUILD_TIME}"
 		do
 		LDFLAGS+="${FLAG} "
 	done
