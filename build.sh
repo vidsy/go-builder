@@ -5,7 +5,7 @@ set -e
 INSTALL="${INSTALL:-true}"
 BUILD="${BUILD:-true}"
 USER=$(whoami)
-VERSION_FLAGS=""
+LDFLAGS=""
 VERSION_PACKAGE="${VERSION_PACKAGE:-main}"
 VERSION_VARIABLE_NAME="${VERSION_VARIABLE_NAME:-Version}"
 BUILD_PATH="${BUILD_PATH:-.}"
@@ -20,7 +20,20 @@ _log () {
 
 if [ -f VERSION ]; then
 	_log "Version file found, adds ld flags"
-	VERSION_FLAGS="-X ${VERSION_PACKAGE}.${VERSION_VARIABLE_NAME}=$(cat VERSION) -X ${BUILD_TIME_PACKAGE}.${BUILD_TIME_VARIABLE_NAME}=${BUILD_TIME}"
+
+	# Sets version / build time ld flags for:
+	# - legacy services where variables are in the services main
+	# - services that use the new x/service package - this will need to be changed when x/service
+	#   is promoted to the main pkg - during that transition we should support both
+	for FLAG in -X ${VERSION_PACKAGE}.${VERSION_VARIABLE_NAME}=$(cat VERSION) \
+				-X ${BUILD_TIME_PACKAGE}.${BUILD_TIME_VARIABLE_NAME}=${BUILD_TIME} \
+				-X github.com/vidsy/back-end/pkg/x/service.version=$(cat VERSION) \
+				-X github.com/vidsy/back-end/pkg/x/service.built=${BUILD_TIME}
+		do
+		LDFLAGS+="${FLAG} "
+	done
+
+	LDFLAGS=${LDFLAGS} | sed 's/ *$//g'
 fi
 
 if [ "${INSTALL}" == "true" ]; then
@@ -35,7 +48,7 @@ fi
 
 if [ "${BUILD}" == "true" ]; then
   _log "Building binary"
-  go build -i -ldflags "$VERSION_FLAGS" -a -installsuffix nocgo ${BUILD_PATH}
+  go build -i -ldflags "$LDFLAGS" -a -installsuffix nocgo ${BUILD_PATH}
 fi
 
 if [ "${OUTPUT_ZONEINFO}" == "true" ]; then
