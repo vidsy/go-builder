@@ -14,20 +14,20 @@ LDFLAGS=""
 
 for arg in "$@"
 do
-    case $arg in
+	case $arg in
 		-v=*|--version=*)
-        VERSION="${arg#*=}"
-        shift
-        ;;
+		VERSION="${arg#*=}"
+		shift
+		;;
 		-t=*|--build-time=*)
-        BUILD_TIME="${arg#*=}"
-        shift
-        ;;
+		BUILD_TIME="${arg#*=}"
+		shift
+		;;
 		--ldflag=*)
-        LDFLAGS="${LDFLAGS}${arg#*=} "
-        shift
-        ;;
-    esac
+		LDFLAGS="${LDFLAGS}${arg#*=} "
+		shift
+		;;
+	esac
 done
 
 VERSION_PACKAGE="${VERSION_PACKAGE:-main}"
