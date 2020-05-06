@@ -7,13 +7,33 @@ INSTALL="${INSTALL:-true}"
 BUILD="${BUILD:-true}"
 BUILD_PATH="${BUILD_PATH:-.}"
 
+VERSION=$(cat VERSION)
+BUILD_TIME=$(date -u +"%d/%m/%YT%H:%M:%S%z")
+
 LDFLAGS=""
+
+for arg in "$@"
+do
+  case $arg in
+    -v=*|--version=*)
+    VERSION="${arg#*=}"
+    shift
+    ;;
+    -t=*|--build-time=*)
+    BUILD_TIME="${arg#*=}"
+    shift
+    ;;
+    --ldflag=*)
+    LDFLAGS="${LDFLAGS}${arg#*=} "
+    shift
+    ;;
+  esac
+done
 
 VERSION_PACKAGE="${VERSION_PACKAGE:-main}"
 VERSION_VARIABLE_NAME="${VERSION_VARIABLE_NAME:-Version}"
 VERSION_LDFLAG="-X ${VERSION_PACKAGE}.${VERSION_VARIABLE_NAME}"
 
-BUILD_TIME="${BUILD_TIME:-$(date -u +"%d/%m/%YT%H:%M:%S%z")}"
 BUILD_TIME_PACKAGE="${BUILD_TIME_PACKAGE:-main}"
 BUILD_TIME_VARIABLE_NAME="${BUILD_TIME_VARIABLE_NAME:-BuildTime}"
 BUILD_TIME_LDFLAG="-X ${BUILD_TIME_PACKAGE}.${BUILD_TIME_VARIABLE_NAME}"
@@ -25,13 +45,13 @@ _log () {
 }
 
 if [ -f VERSION ]; then
-	_log "Version file found, adds ld flags"
+  _log "Version file found, adds ld flags"
 
-	for FLAG in "${VERSION_LDFLAG}=$(cat VERSION)" \
-				"${BUILD_TIME_LDFLAG}=${BUILD_TIME}"
-		do
-		LDFLAGS="${LDFLAGS}${FLAG} "
- 	done
+  for FLAG in "${VERSION_LDFLAG}=${VERSION}" \
+        "${BUILD_TIME_LDFLAG}=${BUILD_TIME}"
+    do
+    LDFLAGS="${LDFLAGS}${FLAG} "
+  done
 fi
 
 if [ "${INSTALL}" == "true" ]; then
@@ -45,6 +65,8 @@ if [ "${INSTALL}" == "true" ]; then
 fi
 
 LDFLAGS=${LDFLAGS} | sed 's/ *$//g'
+
+_log "LDFLAGS=${LDFLAGS}"
 
 if [ "${BUILD}" == "true" ]; then
   _log "Building binary"
