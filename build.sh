@@ -14,20 +14,20 @@ LDFLAGS=""
 
 for arg in "$@"
 do
-	case $arg in
-		-v=*|--version=*)
-		VERSION="${arg#*=}"
-		shift
-		;;
-		-t=*|--build-time=*)
-		BUILD_TIME="${arg#*=}"
-		shift
-		;;
-		--ldflag=*)
-		LDFLAGS="${LDFLAGS}${arg#*=} "
-		shift
-		;;
-	esac
+  case $arg in
+    -v=*|--version=*)
+    VERSION="${arg#*=}"
+    shift
+    ;;
+    -t=*|--build-time=*)
+    BUILD_TIME="${arg#*=}"
+    shift
+    ;;
+    --ldflag=*)
+    LDFLAGS="${LDFLAGS}${arg#*=} "
+    shift
+    ;;
+  esac
 done
 
 VERSION_PACKAGE="${VERSION_PACKAGE:-main}"
@@ -45,13 +45,13 @@ _log () {
 }
 
 if [ -f VERSION ]; then
-	_log "Version file found, adds ld flags"
+  _log "Version file found, adds ld flags"
 
-	for FLAG in "${VERSION_LDFLAG}=${VERSION}" \
-				"${BUILD_TIME_LDFLAG}=${BUILD_TIME}"
-		do
-		LDFLAGS="${LDFLAGS}${FLAG} "
- 	done
+  for FLAG in "${VERSION_LDFLAG}=${VERSION}" \
+        "${BUILD_TIME_LDFLAG}=${BUILD_TIME}"
+    do
+    LDFLAGS="${LDFLAGS}${FLAG} "
+  done
 fi
 
 if [ "${INSTALL}" == "true" ]; then
