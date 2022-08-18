@@ -11,7 +11,7 @@ RUN curl -L -o goreleaser_Linux_x86_64.tar.gz "$GO_RELEASER_DOWNLOAD_URL"
 RUN tar -xf goreleaser_Linux_x86_64.tar.gz
 RUN mv goreleaser /usr/local/bin/goreleaser
 
-FROM golang:1.18.5-alpine3.16
+FROM golang:1.19.0-alpine3.16
 LABEL maintainer="Vidsy <tech@vidsy.co>"
 
 ARG VERSION
