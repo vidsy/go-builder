@@ -4,7 +4,7 @@ ENV GO_RELEASER_VERSION 0.106.0
 ENV GO_RELEASER_DOWNLOAD_URL https://github.com/goreleaser/goreleaser/releases/download/v$GO_RELEASER_VERSION/goreleaser_Linux_x86_64.tar.gz
 
 RUN apk update \
-  && apk add --no-cache openssh-client make git ca-certificates tar curl \
+  && apk add --no-cache openssh-client make git ca-certificates tar curl docker-compose \
   && update-ca-certificates
 
 RUN curl -L -o goreleaser_Linux_x86_64.tar.gz "$GO_RELEASER_DOWNLOAD_URL"

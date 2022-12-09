@@ -16,7 +16,7 @@
 
 The following apps are versioned in the **Dockerfile**:
 
-- Go 1.9.1
+- Go 1.19.1
 - [Glide](https://github.com/Masterminds/glide)
 - [Dep](https://github.com/golang/dep)
 - [Releaser](https://github.com/goreleaser/goreleaser)
@@ -42,7 +42,7 @@ Each of the following steps can be controlled with env vars:
 | `VERSION_VARIABLE_NAME` | The variable name for the binary version | `Version` |
 | `BUILD_PATH` | The path for where to build the binary from | `.` |
 | `BUILD_TIME` | The timestamp for when the binary was built | `$(date -u +"%d/%m/%YT%H:%M:%S%z")` |
-| `BUILD_TIME_PACKAGE` | The package for the build time variable | `main` | 
+| `BUILD_TIME_PACKAGE` | The package for the build time variable | `main` |
 | `BUILD_TIME_VARIABLE_NAME` | The variable name for the build time | `BuildTime` |
 | `OUTPUT_ZONEINFO` | The variable name for if `/usr/local/go/lib/time/zoneinfo.zip` should be added to the current working direcory | `false` |
 
