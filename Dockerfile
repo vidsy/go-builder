@@ -22,7 +22,7 @@ ENV GOCACHE /go/pkg/cache
 ENV GOPRIVATE github.com/vidsy/*
 
 RUN apk update \
-  && apk add --no-cache openssh-client make git ca-certificates tar gcc \
+  && apk add --no-cache openssh-client make git ca-certificates tar gcc curl libcurl \
   && update-ca-certificates
 
 COPY --from=dependencies /usr/local/bin/goreleaser /usr/local/bin/goreleaser
