@@ -70,7 +70,7 @@ _log "LDFLAGS=${LDFLAGS}"
 
 if [ "${BUILD}" == "true" ]; then
   _log "Building binary"
-  go build -i -ldflags "$LDFLAGS" -a -installsuffix nocgo ${BUILD_PATH}
+  go build -ldflags "$LDFLAGS" -a -installsuffix nocgo ${BUILD_PATH}
 fi
 
 if [ "${OUTPUT_ZONEINFO}" == "true" ]; then

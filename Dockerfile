@@ -1,4 +1,4 @@
-FROM alpine:3.16 as dependencies
+FROM alpine:3.18 as dependencies
 
 ENV GO_RELEASER_VERSION 0.106.0
 ENV GO_RELEASER_DOWNLOAD_URL https://github.com/goreleaser/goreleaser/releases/download/v$GO_RELEASER_VERSION/goreleaser_Linux_x86_64.tar.gz
@@ -11,7 +11,7 @@ RUN curl -L -o goreleaser_Linux_x86_64.tar.gz "$GO_RELEASER_DOWNLOAD_URL"
 RUN tar -xf goreleaser_Linux_x86_64.tar.gz
 RUN mv goreleaser /usr/local/bin/goreleaser
 
-FROM golang:1.19.0-alpine3.16
+FROM golang:1.21.0-alpine3.18
 LABEL maintainer="Vidsy <tech@vidsy.co>"
 
 ARG VERSION
